@@ -29,10 +29,13 @@ namespace WPF.UI.ViewModels
             _statisticsService = statisticsService;
 
             //Fake loading data
-            GetStatisticsOnLoad();
+            GetStatistics();
+
+            //Register some fake event, just to show to to trigger UI updates from service layer
+            _statisticsService.SetUpdateStatisticsEvent(GetStatistics);
         }
 
-        private void GetStatisticsOnLoad()
+        private void GetStatistics()
         {
             _ = Application.Current.Dispatcher.InvokeAsync(delegate
             {

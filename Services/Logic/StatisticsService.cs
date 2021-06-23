@@ -2,14 +2,26 @@
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Logic
 {
     public class StatisticsService : IStatisticsService
     {
+        public static Action GetStatisticsCallbackEvent = null;
+
+        public StatisticsService()
+        {
+
+        }
+
+        public void SetUpdateStatisticsEvent(Action getStatistics)
+        {
+            if (GetStatisticsCallbackEvent == null)
+            {
+                GetStatisticsCallbackEvent = getStatistics;
+            }
+        }
+
         public List<TradeUI> GetTradesCache()
         {
             return new List<TradeUI>()
