@@ -3,10 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPF.UI" 
+        xmlns:screens="clr-namespace:WPF.UI.ViewModels" 
+        xmlns:localUc="clr-namespace:WPF.UI.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+        Title="WPFTemplate" 
+        MinHeight="700" 
+        MinWidth="1100"
+        WindowStyle="ThreeDBorderWindow" 
+        WindowStartupLocation="CenterScreen"    
+        ResizeMode="CanResize"
+        DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}" >
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type screens:InitViewModel}">
+            <localUc:InitWindow/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type screens:HomeViewModel}">
+            <localUc:HomeWindow/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid Background="#032337">
+        <ContentControl Content="{Binding ViewModel}"/>
     </Grid>
 </Window>

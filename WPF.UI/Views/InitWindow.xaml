@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="WPF.UI.Views.InitWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF.UI.Views"
+             xmlns:viewModels="clr-namespace:WPF.UI.ViewModels"
+             mc:Ignorable="d"
+             MinHeight="700" 
+             MinWidth="1100"
+             DataContext ="{Binding Source={StaticResource Locator}, Path=InitViewModel}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="#032337">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="ConfigText" Foreground="#FFF9F9F9" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" FontFamily="Segoe UI Light" TextAlignment="Center" Text="{Binding WelcomeText}"/>
+        <TextBox x:Name="APIKeyTextInput" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4" Margin="50,0,50,40" VerticalContentAlignment="Center" FontSize="34" FontFamily="Segoe UI Light" Text="Here goes username" Visibility="{Binding HideEverythingFlag, Converter={StaticResource BoolToVis}}"/>
+        <TextBox x:Name="APISecretTextBox" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Margin="50,0,50,40" VerticalContentAlignment="Center" FontSize="34" FontFamily="Segoe UI Light" Text="Here goes password" Visibility="{Binding HideEverythingFlag, Converter={StaticResource BoolToVis}}"/>
+        <Button x:Name="LoginButton" Content="Click me to continue" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2" FontSize="24" FontFamily="Segoe UI Light" Margin="10,10,10,10" Background="#043144" Foreground="#FFFFFBFB" Command="{Binding LogMeIn}" Visibility="{Binding HideEverythingFlag, Converter={StaticResource BoolToVis}}"/>
+    </Grid>
+</UserControl>

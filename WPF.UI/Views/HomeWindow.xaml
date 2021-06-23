@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="WPF.UI.Views.HomeWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:screens="clr-namespace:WPF.UI.ViewModels" 
+             xmlns:localUc="clr-namespace:WPF.UI.Views"
+             xmlns:local="clr-namespace:WPF.UI.Views"
+             xmlns:viewModels="clr-namespace:WPF.UI.ViewModels"
+             mc:Ignorable="d"
+             MinHeight="700" 
+             MinWidth="1100"
+             DataContext ="{Binding Source={StaticResource Locator}, Path=HomeViewModel}">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type screens:AccountViewModel}">
+            <localUc:AccountPanel/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type screens:StatisticsViewModel}">
+            <localUc:StatisticsPanel/>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="5*" />
+        </Grid.ColumnDefinitions>
+
+        <!--Left menu-->
+        <Grid Grid.Column="0" Grid.Row="0" Background="#121621">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--GBot icon-->
+            <TextBlock Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Foreground="White" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Dashboard" />
+
+            <!--Account button-->
+            <Button Grid.Column="0" Grid.Row="2" FontSize="32" FontFamily="Segoe UI Light" Content = "Account" Foreground="White" Background="#121621" BorderThickness="0" Command="{Binding AccountPanelActivate}"/>
+
+            <!--statistics button-->
+            <Button Grid.Column="0" Grid.Row="3" FontSize="32" FontFamily="Segoe UI Light" Content = "Statistics" Foreground="White" Background="#121621" BorderThickness="0" Command="{Binding StatisticsPanelActivate}"/>
+
+            <!--Exit button-->
+            <Button Grid.Column="0" Grid.Row="10" FontSize="32" FontFamily="Segoe UI Light" Content = "Exit" Foreground="White" Background="#121621" BorderThickness="0"  Command="{Binding ExitApp}"/>
+        </Grid>
+
+        <!--Main content-->
+        <Grid Grid.Column="1" Grid.Row="0" Background="#032337">
+            <ContentControl Content="{Binding ViewModel}"/>
+        </Grid>
+    </Grid>
+</UserControl>
